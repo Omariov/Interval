@@ -34,16 +34,27 @@ void interval::taille_interval() const
 
 interval& interval::operator^(const interval& i)
 {
-	if(this->min>i.min)
+	if((this->max>i.min)&&(this->min<i.max))
 	{
-		this->min=i.min;
+	  if(this->min>i.min)
+	  {
+	  	this->min=i.min;
+	  }
+	  if(this->max<i.max)
+	  {
+  	    this->max=i.max;
+      }
+	  return *this;
+    }
+    else
+    {
+    	cout << "L'intervalle est [" << this->min << "," << this->max << "] U ["<< i.min << "," << i.max << "]";
+//		this->afficher();
+//    	cout<<"U",
+//    	i.afficher();
+//    	//return *this;
 	}
-	if(this->max<i.max)
-	{
-		this->max=i.max;
-	}
-	return *this;
-	
+    
 }
 
 interval& interval::operator|(const interval& i)
